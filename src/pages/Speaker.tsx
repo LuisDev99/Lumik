@@ -1,21 +1,21 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-import mic from "../assets/mic.svg";
+import Microphone from "../components/Microphone";
 
 function SpeakerPage() {
+  function handleFinishMic(voiceInputText: string) {
+    console.log("Voice entered: ", voiceInputText);
+  }
+
   return (
     <div>
       <Navbar />
 
-      <div className='microphone'>
-        <img src={mic} alt='mic' className='microphone-icon' />
-        <p>Push To Talk</p>
-      </div>
+      <Microphone onFinishListening={handleFinishMic} />
 
-      <footer>
-        <p>View List</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -28,7 +28,7 @@ footer p {
   height: 80px;
 }
 
-.microphone-icon:hover {
+.microphone-icon:active {
   animation: mic--effect infinite 1s linear;
 }
 
