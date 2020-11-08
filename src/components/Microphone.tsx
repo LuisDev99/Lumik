@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ClickNHold from "react-click-n-hold";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -36,6 +36,7 @@ function Microphone(props: Prop) {
     <>
       <div className='microphone'>
         <ClickNHold
+          time={2}
           onStart={handleMicInit} // Start callback
           onEnd={handleMicStop}
         >
