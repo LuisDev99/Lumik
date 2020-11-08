@@ -5,15 +5,19 @@ import Footer from "../components/Footer";
 import Microphone from "../components/Microphone";
 
 function SpeakerPage() {
-  function handleFinishMic(voiceInputText: string) {
+  function handleVoiceInput(voiceInputText: string) {
     console.log("Voice entered: ", voiceInputText);
+
+    /**
+     * TODO: Send this text to the Assistant API
+     */
   }
 
   return (
     <div>
       <Navbar />
 
-      <Microphone onFinishListening={handleFinishMic} />
+      <Microphone onFinishListening={handleVoiceInput} />
 
       <Footer />
     </div>

@@ -1,9 +1,10 @@
 import React from "react";
+import Chat from "./Chat";
 
 function Footer() {
   return (
     <footer>
-      <a href='#'>View List</a>
+      <Chat msg='YES' />
     </footer>
   );
 }
