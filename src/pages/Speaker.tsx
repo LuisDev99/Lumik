@@ -1,22 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../components/Navbar";
 
 import Microphone from "../components/Microphone";
-import Chat from "../components/Chat";
+import Chat, { addUserMessage, addResponseMessage } from "../components/Chat";
 
 function SpeakerPage() {
-  const [userVoiceCommands, setUserVoiceCommands] = useState<Array<string>>([
-    "Hola",
-    "I'm Bot",
-  ]);
+  function handleNewCommand(command: string) {
+    console.log("Command from voice: ", command);
+
+    if (command !== "") addUserMessage(command);
+
+    /**
+     * TODO: Send this command to the Assistant API
+     */
+  }
 
   function handleVoiceInput(voiceInputText: string) {
-    console.log("Voice entered: ", voiceInputText);
+    handleNewCommand(voiceInputText);
+  }
 
-    setUserVoiceCommands([...userVoiceCommands, voiceInputText]);
-    /**
-     * TODO: Send this text to the Assistant API
-     */
+  function handleNewMessageFromChat(message: string) {
+    console.log("Command written on chat: ", message);
+
+    switch (message) {
+      case "Show me more":
+        addResponseMessage("No");
+        break;
+
+      case "mov eax, 0":
+        addResponseMessage("What have you done!");
+        break;
+    }
   }
 
   return (
@@ -25,7 +39,7 @@ function SpeakerPage() {
 
       <Microphone onFinishListening={handleVoiceInput} />
 
-      <Chat messages={userVoiceCommands} />
+      <Chat handleNewUserMessage={handleNewMessageFromChat} />
     </div>
   );
 }
