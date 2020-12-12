@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 
 import Microphone from "../components/Microphone";
+import SignalR_Client from "../components/SignalR_Client";
 import Chat, { addUserMessage, addResponseMessage } from "../components/Chat";
 
 function SpeakerPage() {
@@ -36,6 +37,8 @@ function SpeakerPage() {
   return (
     <div>
       <Navbar />
+
+      <SignalR_Client />
 
       <Microphone onFinishListening={handleVoiceInput} />
 
