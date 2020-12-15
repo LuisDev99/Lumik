@@ -42,6 +42,7 @@ const SignalR_Client = () => {
         await connection.send("SendCommand", {
           Command: "Hola",
           Token: "Esta bien",
+          UserID: 3,
         });
       } catch (e) {
         console.log(e);

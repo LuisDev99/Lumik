@@ -2,43 +2,43 @@ import React from "react";
 import Navbar from "../components/Navbar";
 
 import Microphone from "../components/Microphone";
-import SignalR_Client from "../components/SignalR_Client";
 import Chat, { addUserMessage, addResponseMessage } from "../components/Chat";
+import { BotService } from "../services/BotService";
 
 function SpeakerPage() {
-  function handleNewCommand(command: string) {
+  async function handleNewCommand(command: string) {
     console.log("Command from voice: ", command);
 
-    if (command !== "") addUserMessage(command);
+    try {
+      var response = await new BotService().sendCommand({
+        command: command,
+        token: "Rakata",
+        userID: "1",
+      });
 
-    /**
-     * TODO: Send this command to the Assistant API
-     */
+      const delimitedLines = response.data.split(/">>>"|\n/);
+
+      delimitedLines.forEach(str => addResponseMessage(str));
+    } catch (e) {
+      addResponseMessage(
+        "You crashed my server! You found a case I have yet to fix, causing my server to rakata and crash"
+      );
+    }
   }
 
   function handleVoiceInput(voiceInputText: string) {
+    if (voiceInputText !== "") addUserMessage(voiceInputText);
+
     handleNewCommand(voiceInputText);
   }
 
   function handleNewMessageFromChat(message: string) {
-    console.log("Command written on chat: ", message);
-
-    switch (message) {
-      case "Show me more":
-        addResponseMessage("No");
-        break;
-
-      case "mov eax, 0":
-        addResponseMessage("What have you done!");
-        break;
-    }
+    handleNewCommand(message);
   }
 
   return (
     <div>
       <Navbar />
-
-      <SignalR_Client />
 
       <Microphone onFinishListening={handleVoiceInput} />
 
