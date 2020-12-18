@@ -18,8 +18,8 @@ ReactDOM.render(
   <Auth0Provider domain={domain} clientId={clientId} redirectUri={uri}>
     <Router>
       <Switch>
-        <ProtectedRoute path='/' exact component={Speaker} />
-        <ProtectedRoute path='/home' component={Speaker} />
+        <Route path='/' exact component={Speaker} />
+        <Route path='/home' component={Speaker} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
       </Switch>
