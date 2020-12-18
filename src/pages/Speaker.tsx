@@ -4,17 +4,23 @@ import Navbar from "../components/Navbar";
 import Microphone from "../components/Microphone";
 import Chat, { addUserMessage, addResponseMessage } from "../components/Chat";
 import { BotService } from "../services/BotService";
+import { useUserContext } from "../UserContext";
 
 function SpeakerPage() {
+  const { user } = useUserContext();
+
   async function handleNewCommand(command: string) {
     console.log("Command from voice: ", command);
 
     try {
-      var response = await new BotService().sendCommand({
-        command: command,
-        token: "Rakata",
-        userID: "1",
-      });
+      var response = await new BotService().sendCommand(
+        {
+          command: command,
+          token: "Rakata",
+          userID: "1",
+        },
+        user!.email
+      );
 
       const delimitedLines = response.data.split(/">>>"|\n/);
 

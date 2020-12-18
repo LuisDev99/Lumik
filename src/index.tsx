@@ -9,21 +9,24 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import "./index.css";
+import { UserProvider } from "./UserContext";
 
 const uri = process.env.REACT_APP_AUTH0_CALLBACK_URL ?? "";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN ?? "";
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID ?? "";
 
 ReactDOM.render(
-  <Auth0Provider domain={domain} clientId={clientId} redirectUri={uri}>
-    <Router>
-      <Switch>
-        <ProtectedRoute path='/' exact component={Speaker} />
-        <ProtectedRoute path='/home' component={Speaker} />
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-      </Switch>
-    </Router>
-  </Auth0Provider>,
+  <UserProvider>
+    <Auth0Provider domain={domain} clientId={clientId} redirectUri={uri}>
+      <Router>
+        <Switch>
+          <ProtectedRoute path='/' exact component={Speaker} />
+          <ProtectedRoute path='/home' component={Speaker} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+        </Switch>
+      </Router>
+    </Auth0Provider>
+  </UserProvider>,
   document.getElementById("root")
 );
