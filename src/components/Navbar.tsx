@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      
+
     },
     title: {
       flexGrow: 1,
@@ -26,25 +26,17 @@ function Navbar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-    <AppBar color="default" position="static">
-      <Toolbar>
-        <Typography variant="h6" className={classes.title}>
-          LUMIK
+      <AppBar color="default" position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            LUMIK
         </Typography>
-        <Button color="inherit"onClick={handleLogOut}>Log out</Button>
-      </Toolbar>
-    </AppBar>
-  </div>
-  
+          <Button color="inherit" onClick={handleLogOut}>Log out</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+
   );
 }
 
 export default Navbar;
-{/* <nav className='navbar'>
-<div>
-  <p>MENU</p>
-</div>
-<button className='navbar-logout' onClick={handleLogOut}>
-  Log Out
-</button>
-</nav> */}

@@ -2,9 +2,9 @@ import React from "react";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
-import { deepPurple } from '@material-ui/core/colors'
-import { useAsyncEffect } from "use-async-effect";
+import { deepPurple } from "@material-ui/core/colors";
 import { UserService } from "../services/UserService";
+import { useAsyncEffect } from "use-async-effect";
 import { useUserContext } from "../UserContext";
 import { User } from "../models/User";
 import Button from "@material-ui/core/Button";
@@ -15,23 +15,8 @@ import {
   ThemeProvider,
   createMuiTheme,
 } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
-import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
-import { deepPurple } from "@material-ui/core/colors";
-const imageBGDivStyle: React.CSSProperties = {
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  width: "100vw",
-  height: "100vh",
-  display: "flex",
-  justifyContent: "center",
-  alignContent: "center",
-  textAlign: "center",
-};
 
 const theme = createMuiTheme({
   palette: {
