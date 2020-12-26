@@ -5,9 +5,8 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import mic from "../assets/mic.svg";
 import Typography from '@material-ui/core/Typography'
-import { Theme,makeStyles,createStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Theme,makeStyles,createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import {deepPurple} from '@material-ui/core/colors'
 interface Prop {
   onFinishListening: (voiceText: string) => void;
 }
@@ -64,10 +63,6 @@ function Microphone(props: Prop) {
   </div>
   );
 }
-//  <div className='microphone'>
-//         <ClickNHold time={2} onStart={handleMicInit} onEnd={handleMicStop}>
-//           <img src={mic} alt='mic' className='microphone-icon' />
-//         </ClickNHold>
-//         <p>Press and Hold To Talk</p>
-//       </div> 
+
+
 export default Microphone;
