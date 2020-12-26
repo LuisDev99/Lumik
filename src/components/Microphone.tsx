@@ -4,21 +4,38 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import mic from "../assets/mic.svg";
-
+import Typography from '@material-ui/core/Typography'
+import { Theme,makeStyles,createStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import {deepPurple} from '@material-ui/core/colors'
 interface Prop {
   onFinishListening: (voiceText: string) => void;
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      '& > *': {
+        margin: theme.spacing(25, 80, 20),
+        width: theme.spacing(40),
+        height: theme.spacing(23),
+      },
+    },
+  }),
+);
+
 function Microphone(props: Prop) {
   const { transcript } = useSpeechRecognition();
-
+  const classes = useStyles();
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return <div>El microfono no esta soportado por tu browser</div>;
   }
 
   function handleMicInit() {
     console.log("Started listening");
-
+    
     SpeechRecognition.startListening({
       language: "en-US",
     });
@@ -33,15 +50,24 @@ function Microphone(props: Prop) {
   }
 
   return (
-    <>
-      <div className='microphone'>
-        <ClickNHold time={2} onStart={handleMicInit} onEnd={handleMicStop}>
-          <img src={mic} alt='mic' className='microphone-icon' />
-        </ClickNHold>
-        <p>Press and Hold To Talk</p>
-      </div>
-    </>
+    <div className={classes.root}>
+    <Paper elevation={6} >
+    <div className='microphone'>
+    <ClickNHold time={2} onStart={handleMicInit} onEnd={handleMicStop}>
+        <img src={mic} alt='mic' className='microphone-icon' />
+    </ClickNHold>
+        <Typography>
+        Press and Hold To Talk
+        </Typography>
+        </div>
+        </Paper>
+  </div>
   );
 }
-
+//  <div className='microphone'>
+//         <ClickNHold time={2} onStart={handleMicInit} onEnd={handleMicStop}>
+//           <img src={mic} alt='mic' className='microphone-icon' />
+//         </ClickNHold>
+//         <p>Press and Hold To Talk</p>
+//       </div> 
 export default Microphone;
