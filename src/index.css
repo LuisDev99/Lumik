@@ -8,10 +8,6 @@ body{
   overflow: hidden; /* Hide scrollbars */
 }
 
-
-footer p {
-}
-
 .navbar {
   display: flex;
   flex-direction: row;
