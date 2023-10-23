@@ -14,9 +14,6 @@ body{
   justify-content: space-between;
 }
 
-.navbar-logout {
-}
-
 .microphone {
   display: flex;
   flex-direction: column;
